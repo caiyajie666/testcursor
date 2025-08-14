@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>YourBrand · 跨境选品与采购，一站式解决方案</title>
+  <meta name="description" content="YourBrand 跨境选品与采购平台，覆盖全球品类，智能比价，安全交易，快速物流。">
+  <meta name="theme-color" content="#111827">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="YourBrand · 跨境选品与采购，一站式解决方案">
+  <meta property="og:description" content="发现海外热销商品，智能比价与保障交易。">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1200&auto=format&fit=crop">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%234F46E5'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-size='56' fill='white' font-family='Arial'%3EY%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <div class="announcement" role="region" aria-label="站点公告">
+    <div class="container">
+      <span>🎉 新用户限时优惠：注册即享 10% 首单折扣</span>
+      <a href="#cta" class="announcement__link">立即领取</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header__inner">
+      <a class="brand" href="#" aria-label="YourBrand 首页">YourBrand</a>
+
+      <nav class="nav" aria-label="主导航">
+        <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="打开菜单">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav__list">
+          <li><a href="#main">首页</a></li>
+          <li><a href="#categories">分类</a></li>
+          <li><a href="#featured">热销</a></li>
+          <li><a href="#values">优势</a></li>
+          <li><a href="#footer">关于</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__tools">
+        <form id="searchForm" class="search" role="search" aria-label="站内搜索">
+          <input id="searchInput" name="q" type="search" placeholder="搜索商品、品牌或SKU…" aria-label="搜索" />
+          <button id="searchBtn" type="submit" aria-label="搜索">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+          </button>
+        </form>
+        <a class="btn btn--ghost" href="#login">登录</a>
+        <a class="btn btn--primary" href="#signup">注册</a>
+      </div>
+    </div>
+
+    <div id="mobileNav" class="mobile-nav" hidden>
+      <ul>
+        <li><a href="#main">首页</a></li>
+        <li><a href="#categories">分类</a></li>
+        <li><a href="#featured">热销</a></li>
+        <li><a href="#values">优势</a></li>
+        <li><a href="#footer">关于</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <h1>跨境选品与采购，一站式解决方案</h1>
+          <p>覆盖数百万全球货源，智能比价、风控保障与履约物流，助力品牌与卖家轻松拓展海外生意。</p>
+          <form id="heroSearchForm" class="hero__search" role="search" aria-label="搜索商品">
+            <input id="heroSearchInput" type="search" placeholder="试试：蓝牙耳机、宠物用品、运动手表…" aria-label="搜索" />
+            <button type="submit" class="btn btn--primary">搜索</button>
+          </form>
+          <ul class="trustbar" aria-label="平台优势">
+            <li>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2l7 4v6c0 5-3.5 9.3-7 10-3.5-.7-7-5-7-10V6l7-4z"/></svg>
+              正品保障
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3h18v2H3zM3 19h18v2H3zM3 8h18v8H3z"/></svg>
+              全球配送
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 21c-4.97 0-9-4.03-9-9S7.03 3 12 3v9l7 4c-1.58 3.1-4.83 5-7 5z"/></svg>
+              买家保障
+            </li>
+          </ul>
+        </div>
+        <div class="hero__media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1557825835-70d97c4aa2d7?q=80&w=1400&auto=format&fit=crop" alt="精选商品拼贴示意图" />
+        </div>
+      </div>
+    </section>
+
+    <section id="categories" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>热门分类</h2>
+          <a class="link" href="#">全部分类</a>
+        </div>
+        <div class="categories">
+          <a class="category" href="#" aria-label="电子产品">
+            <span class="category__icon">📱</span>
+            <span class="category__label">电子产品</span>
+          </a>
+          <a class="category" href="#" aria-label="家居与厨房">
+            <span class="category__icon">🏠</span>
+            <span class="category__label">家居与厨房</span>
+          </a>
+          <a class="category" href="#" aria-label="运动户外">
+            <span class="category__icon">🏃</span>
+            <span class="category__label">运动户外</span>
+          </a>
+          <a class="category" href="#" aria-label="宠物用品">
+            <span class="category__icon">🐾</span>
+            <span class="category__label">宠物用品</span>
+          </a>
+          <a class="category" href="#" aria-label="美妆个护">
+            <span class="category__icon">💄</span>
+            <span class="category__label">美妆个护</span>
+          </a>
+          <a class="category" href="#" aria-label="服饰鞋包">
+            <span class="category__icon">🧥</span>
+            <span class="category__label">服饰鞋包</span>
+          </a>
+          <a class="category" href="#" aria-label="母婴玩具">
+            <span class="category__icon">🧸</span>
+            <span class="category__label">母婴玩具</span>
+          </a>
+          <a class="category" href="#" aria-label="汽车配件">
+            <span class="category__icon">🚗</span>
+            <span class="category__label">汽车配件</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>热销精选</h2>
+          <div class="tabs" role="tablist">
+            <button class="tab is-active" role="tab" aria-selected="true">全部</button>
+            <button class="tab" role="tab">新品</button>
+            <button class="tab" role="tab">高评分</button>
+          </div>
+        </div>
+        <div id="productGrid" class="products" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="values" class="section section--alt">
+      <div class="container values">
+        <div class="value">
+          <div class="value__icon">💡</div>
+          <h3>智能选品</h3>
+          <p>多维数据驱动选品决策，洞察趋势，降低试错成本。</p>
+        </div>
+        <div class="value">
+          <div class="value__icon">🛡️</div>
+          <h3>交易保障</h3>
+          <p>多重风控加持、分阶段托管，守护每一笔交易。</p>
+        </div>
+        <div class="value">
+          <div class="value__icon">🚚</div>
+          <h3>高效履约</h3>
+          <p>全球仓配网络与时效追踪，跨境物流更简单。</p>
+        </div>
+        <div class="value">
+          <div class="value__icon">🤝</div>
+          <h3>本地化支持</h3>
+          <p>覆盖多语多币种，专业团队提供本地化服务。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>用户评价</h2>
+        </div>
+        <div class="testimonials">
+          <figure class="testimonial">
+            <blockquote>上架效率和转化率都上来了，供应链也更透明了。</blockquote>
+            <figcaption>— 跨境卖家 A</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>找货、比价、下单、履约一体化，省心省时。</blockquote>
+            <figcaption>— 品牌方 B</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>买家保障机制让我们更敢下单，体验很好。</blockquote>
+            <figcaption>— 渠道商 C</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="cta">
+      <div class="container cta__inner">
+        <div>
+          <h2>立即开启全球生意</h2>
+          <p>免费注册，几分钟完成入驻，开启您的跨境增长之旅。</p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--primary btn--lg" href="#signup">免费注册</a>
+          <a class="btn btn--ghost btn--lg" href="#contact">联系顾问</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand brand--sm" href="#">YourBrand</a>
+        <p>专注跨境供应链与交易撮合，帮助全球商家高效连接。</p>
+      </div>
+      <div class="footer__col">
+        <h4>产品</h4>
+        <ul>
+          <li><a href="#">选品平台</a></li>
+          <li><a href="#">供应商</a></li>
+          <li><a href="#">采购管理</a></li>
+          <li><a href="#">物流追踪</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>支持</h4>
+        <ul>
+          <li><a href="#">帮助中心</a></li>
+          <li><a href="#">费用说明</a></li>
+          <li><a href="#">服务协议</a></li>
+          <li><a href="#">隐私政策</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>联系我们</h4>
+        <ul>
+          <li><a href="mailto:support@yourbrand.com">support@yourbrand.com</a></li>
+          <li><a href="#">提交工单</a></li>
+          <li><a href="#">渠道合作</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__legal">
+      <span>© <span id="year"></span> YourBrand</span>
+      <div class="footer__links">
+        <a href="#">条款</a>
+        <a href="#">隐私</a>
+        <a href="#">Cookie</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
