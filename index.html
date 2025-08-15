@@ -9,6 +9,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- 顶部信息栏 -->
+    <div class="topbar bg-dark text-light small">
+        <div class="container d-flex justify-content-between align-items-center py-1">
+            <div class="d-none d-md-flex gap-3">
+                <span><i class="fas fa-truck me-1"></i>满99元包邮</span>
+                <span><i class="fas fa-rotate-left me-1"></i>7天无理由退换</span>
+                <span><i class="fas fa-shield-alt me-1"></i>安全支付</span>
+            </div>
+            <div class="d-flex gap-3">
+                <span class="d-none d-sm-inline"><i class="fas fa-headset me-1"></i>7x24小时客服</span>
+                <a href="#" class="text-light text-decoration-none d-none d-sm-inline"><i class="fab fa-weixin"></i></a>
+                <a href="#" class="text-light text-decoration-none d-none d-sm-inline"><i class="fab fa-weibo"></i></a>
+            </div>
+        </div>
+    </div>
     <!-- 顶部导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
@@ -150,6 +165,86 @@
             <h2 class="text-center mb-4">热门商品</h2>
             <div class="row" id="featuredProducts">
                 <!-- 动态加载商品 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 平台保障特色 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="assure-item text-center p-4 h-100">
+                        <i class="fas fa-shield-alt fa-2x text-primary mb-2"></i>
+                        <h6 class="mb-1">正品保障</h6>
+                        <small class="text-muted">品牌授权，假一赔十</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="assure-item text-center p-4 h-100">
+                        <i class="fas fa-truck-fast fa-2x text-success mb-2"></i>
+                        <h6 class="mb-1">极速发货</h6>
+                        <small class="text-muted">多仓直发，次日可达</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="assure-item text-center p-4 h-100">
+                        <i class="fas fa-rotate-left fa-2x text-warning mb-2"></i>
+                        <h6 class="mb-1">无忧退换</h6>
+                        <small class="text-muted">7天无理由退换</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="assure-item text-center p-4 h-100">
+                        <i class="fas fa-headset fa-2x text-danger mb-2"></i>
+                        <h6 class="mb-1">客服支持</h6>
+                        <small class="text-muted">7x24小时在线</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 品牌专区 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0">品牌专区</h2>
+                <a href="products.html" class="text-decoration-none">查看更多 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="row g-3" id="brandGallery">
+                <div class="col-6 col-md-3">
+                    <div class="brand-tile">Apple</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="brand-tile">Nike</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="brand-tile">Samsung</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="brand-tile">ZARA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 订阅区 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="subscribe-box p-4 p-md-5 rounded-3">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-6">
+                        <h3 class="mb-1">订阅优惠资讯</h3>
+                        <p class="mb-0 text-muted">第一时间获取限时折扣与新品通知</p>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="d-flex gap-2" onsubmit="handleSubscribe(event)">
+                            <input type="email" class="form-control" id="subscribeEmail" placeholder="输入你的邮箱">
+                            <button class="btn btn-primary" type="submit">订阅</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

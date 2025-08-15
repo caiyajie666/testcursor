@@ -110,6 +110,23 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
 });
 
+// 订阅提交
+function handleSubscribe(event) {
+    event.preventDefault();
+    const input = document.getElementById('subscribeEmail');
+    const email = (input?.value || '').trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showToast('请输入有效的邮箱地址', 'error');
+        return;
+    }
+    const subs = JSON.parse(localStorage.getItem('subscriptions') || '[]');
+    if (!subs.includes(email)) subs.push(email);
+    localStorage.setItem('subscriptions', JSON.stringify(subs));
+    showToast('订阅成功，感谢关注！', 'success');
+    input.value = '';
+}
+
 // 加载推荐商品
 function loadFeaturedProducts() {
     const container = document.getElementById('featuredProducts');
@@ -512,3 +529,4 @@ window.viewProduct = viewProduct;
 window.addToCartFromModal = addToCartFromModal;
 window.toggleWishlist = toggleWishlist;
 window.featuredProducts = featuredProducts;
+window.handleSubscribe = handleSubscribe;

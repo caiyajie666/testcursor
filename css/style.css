@@ -434,6 +434,39 @@ footer a:hover {
     to { transform: translateX(0); }
 }
 
+/* 顶部信息栏 */
+.topbar a { opacity: 0.85; }
+.topbar a:hover { opacity: 1; }
+
+/* 平台保障 */
+.assure-item {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* 品牌专区 */
+.brand-tile {
+    background: linear-gradient(135deg, #f8f9fa, #eef2f7);
+    border: 1px solid #e5eaf1;
+    border-radius: 12px;
+    padding: 28px 0;
+    text-align: center;
+    font-weight: 700;
+    color: #445;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.brand-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+/* 订阅区 */
+.subscribe-box {
+    background: linear-gradient(135deg, rgba(0,123,255,0.08), rgba(0,86,179,0.08));
+    border: 1px solid rgba(0,123,255,0.15);
+}
+
 /* 无障碍样式 */
 .sr-only {
     position: absolute;
