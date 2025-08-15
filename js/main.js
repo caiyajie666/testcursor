@@ -1,456 +1,467 @@
-// 主页JavaScript功能
+// PinguBuy 代购服务主页JavaScript功能
 
-// 模拟商品数据
+// 模拟热门代购商品数据
 const featuredProducts = [
     {
         id: 1,
-        name: "iPhone 15 Pro",
-        price: 7999,
-        originalPrice: 8999,
-        image: "https://via.placeholder.com/300x200/007bff/ffffff?text=iPhone+15+Pro",
+        name: "iPhone 15 Pro (中国版)",
+        price: 6999,
+        originalPrice: 7999,
+        image: "https://via.placeholder.com/300x200/667eea/ffffff?text=iPhone+15+Pro",
         category: "electronics",
         rating: 4.8,
         reviews: 1250,
-        brand: "apple",
-        description: "最新一代iPhone，配备A17 Pro芯片"
+        platform: "apple",
+        description: "苹果最新旗舰手机，中国官方版本",
+        serviceFee: 350,
+        shippingCost: 299
     },
     {
         id: 2,
-        name: "Nike Air Max 270",
-        price: 899,
-        originalPrice: 1199,
-        image: "https://via.placeholder.com/300x200/28a745/ffffff?text=Nike+Air+Max",
-        category: "sports",
+        name: "小米13 Ultra",
+        price: 4999,
+        originalPrice: 5499,
+        image: "https://via.placeholder.com/300x200/28a745/ffffff?text=Xiaomi+13+Ultra",
+        category: "electronics",
         rating: 4.6,
         reviews: 856,
-        brand: "nike",
-        description: "舒适透气的运动鞋，适合日常穿着"
+        platform: "xiaomi",
+        description: "徕卡影像旗舰，专业摄影手机",
+        serviceFee: 250,
+        shippingCost: 299
     },
     {
         id: 3,
-        name: "Samsung 65寸电视",
-        price: 4999,
-        originalPrice: 5999,
-        image: "https://via.placeholder.com/300x200/6c757d/ffffff?text=Samsung+TV",
+        name: "华为Mate 60 Pro",
+        price: 6999,
+        originalPrice: 7499,
+        image: "https://via.placeholder.com/300x200/6c757d/ffffff?text=Huawei+Mate60",
         category: "electronics",
         rating: 4.7,
         reviews: 423,
-        brand: "samsung",
-        description: "4K Ultra HD智能电视，HDR技术"
+        platform: "huawei",
+        description: "麒麟9000s芯片，卫星通信技术",
+        serviceFee: 350,
+        shippingCost: 299
     },
     {
         id: 4,
-        name: "时尚女装套装",
-        price: 399,
-        originalPrice: 599,
-        image: "https://via.placeholder.com/300x200/dc3545/ffffff?text=Fashion+Set",
+        name: "Supreme联名卫衣",
+        price: 1299,
+        originalPrice: 1599,
+        image: "https://via.placeholder.com/300x200/dc3545/ffffff?text=Supreme+Hoodie",
         category: "fashion",
         rating: 4.5,
         reviews: 678,
-        brand: "zara",
-        description: "优质面料，舒适时尚的女装套装"
+        platform: "supreme",
+        description: "限量版联名款，潮流必备",
+        serviceFee: 130,
+        shippingCost: 199
     },
     {
         id: 5,
-        name: "智能咖啡机",
-        price: 1299,
-        originalPrice: 1599,
-        image: "https://via.placeholder.com/300x200/ffc107/000000?text=Coffee+Machine",
+        name: "飞利浦空气炸锅",
+        price: 899,
+        originalPrice: 1199,
+        image: "https://via.placeholder.com/300x200/ffc107/000000?text=Air+Fryer",
         category: "home",
         rating: 4.4,
         reviews: 234,
-        brand: "delonghi",
-        description: "全自动咖啡机，享受咖啡馆品质"
+        platform: "philips",
+        description: "健康无油烹饪，家庭必备厨电",
+        serviceFee: 45,
+        shippingCost: 199
     },
     {
         id: 6,
-        name: "Adidas运动外套",
-        price: 699,
-        originalPrice: 899,
-        image: "https://via.placeholder.com/300x200/17a2b8/ffffff?text=Adidas+Jacket",
-        category: "sports",
+        name: "Nike Air Jordan 1",
+        price: 1299,
+        originalPrice: 1599,
+        image: "https://via.placeholder.com/300x200/17a2b8/ffffff?text=Air+Jordan+1",
+        category: "fashion",
         rating: 4.6,
         reviews: 445,
-        brand: "adidas",
-        description: "防风防水运动外套，户外必备"
-    },
-    {
-        id: 7,
-        name: "Apple MacBook Air",
-        price: 8999,
-        originalPrice: 9999,
-        image: "https://via.placeholder.com/300x200/6f42c1/ffffff?text=MacBook+Air",
-        category: "electronics",
-        rating: 4.9,
-        reviews: 1876,
-        brand: "apple",
-        description: "M2芯片，轻薄便携的笔记本电脑"
-    },
-    {
-        id: 8,
-        name: "北欧风台灯",
-        price: 299,
-        originalPrice: 399,
-        image: "https://via.placeholder.com/300x200/20c997/ffffff?text=Nordic+Lamp",
-        category: "home",
-        rating: 4.3,
-        reviews: 156,
-        brand: "ikea",
-        description: "简约北欧风格，温馨护眼台灯"
+        platform: "nike",
+        description: "经典篮球鞋，潮流icon",
+        serviceFee: 130,
+        shippingCost: 199
     }
 ];
 
-// 购物车数据管理
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+// 订单数据管理
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+// 价格估算缓存
+let estimateCache = new Map();
 
 // 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
-    loadFeaturedProducts();
-    updateCartCount();
     initializeEventListeners();
+    updateOrderCount();
+    initSmoothScrolling();
+    initEstimateForm();
+    initOrderForm();
 });
-
-// 加载推荐商品
-function loadFeaturedProducts() {
-    const container = document.getElementById('featuredProducts');
-    if (!container) return;
-
-    container.innerHTML = '';
-    
-    // 随机选择6个商品展示
-    const shuffled = [...featuredProducts].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 6);
-    
-    selected.forEach(product => {
-        const productCard = createProductCard(product);
-        container.appendChild(productCard);
-    });
-}
-
-// 创建商品卡片
-function createProductCard(product) {
-    const col = document.createElement('div');
-    col.className = 'col-md-4 col-sm-6 mb-4';
-    
-    const discountPercent = Math.round((1 - product.price / product.originalPrice) * 100);
-    
-    col.innerHTML = `
-        <div class="card product-card h-100 fade-in">
-            <div class="position-relative">
-                <img src="${product.image}" class="card-img-top product-image" alt="${product.name}">
-                <div class="position-absolute top-0 end-0 m-2">
-                    <span class="badge bg-danger">-${discountPercent}%</span>
-                </div>
-                <div class="position-absolute top-0 start-0 m-2">
-                    <button class="btn btn-sm btn-outline-light" onclick="toggleWishlist(${product.id})" title="添加到心愿单">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body d-flex flex-column">
-                <h6 class="card-title">${product.name}</h6>
-                <p class="card-text text-muted small">${product.description}</p>
-                <div class="mb-2">
-                    <div class="product-rating">
-                        ${generateStars(product.rating)}
-                        <small class="text-muted ms-1">(${product.reviews})</small>
-                    </div>
-                </div>
-                <div class="mt-auto">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div>
-                            <span class="product-price">¥${product.price.toLocaleString()}</span>
-                            <small class="product-original-price ms-1">¥${product.originalPrice.toLocaleString()}</small>
-                        </div>
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-primary btn-sm" onclick="addToCart(${product.id})">
-                            <i class="fas fa-cart-plus me-1"></i>加入购物车
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm" onclick="viewProduct(${product.id})">
-                            查看详情
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    return col;
-}
-
-// 生成星级评分
-function generateStars(rating) {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-    let stars = '';
-    
-    for (let i = 0; i < fullStars; i++) {
-        stars += '<i class="fas fa-star"></i>';
-    }
-    
-    if (hasHalfStar) {
-        stars += '<i class="fas fa-star-half-alt"></i>';
-    }
-    
-    const emptyStars = 5 - Math.ceil(rating);
-    for (let i = 0; i < emptyStars; i++) {
-        stars += '<i class="far fa-star"></i>';
-    }
-    
-    return stars;
-}
-
-// 搜索商品功能
-function searchProducts(event) {
-    event.preventDefault();
-    const searchTerm = document.getElementById('searchInput').value.trim();
-    
-    if (searchTerm) {
-        // 跳转到商品页面并传递搜索参数
-        window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
-    }
-}
-
-// 添加到购物车
-function addToCart(productId) {
-    const product = featuredProducts.find(p => p.id === productId);
-    if (!product) return;
-    
-    const existingItem = cart.find(item => item.id === productId);
-    
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            ...product,
-            quantity: 1,
-            addedAt: new Date().toISOString()
-        });
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    
-    // 显示成功消息
-    showToast('商品已添加到购物车', 'success');
-    
-    // 添加动画效果
-    animateCartIcon();
-}
-
-// 更新购物车数量
-function updateCartCount() {
-    const cartCountElement = document.getElementById('cartCount');
-    if (cartCountElement) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartCountElement.textContent = totalItems;
-        
-        // 添加动画效果
-        if (totalItems > 0) {
-            cartCountElement.classList.add('animate__animated', 'animate__pulse');
-            setTimeout(() => {
-                cartCountElement.classList.remove('animate__animated', 'animate__pulse');
-            }, 1000);
-        }
-    }
-}
-
-// 购物车图标动画
-function animateCartIcon() {
-    const cartIcon = document.querySelector('.fa-shopping-cart');
-    if (cartIcon) {
-        cartIcon.classList.add('animate__animated', 'animate__tada');
-        setTimeout(() => {
-            cartIcon.classList.remove('animate__animated', 'animate__tada');
-        }, 1000);
-    }
-}
-
-// 查看商品详情
-function viewProduct(productId) {
-    const product = featuredProducts.find(p => p.id === productId);
-    if (!product) return;
-    
-    // 这里可以跳转到商品详情页或显示模态框
-    showProductModal(product);
-}
-
-// 显示商品详情模态框
-function showProductModal(product) {
-    const modal = new bootstrap.Modal(document.getElementById('productModal'));
-    const modalTitle = document.getElementById('productModalTitle');
-    const modalBody = document.getElementById('productModalBody');
-    
-    modalTitle.textContent = product.name;
-    modalBody.innerHTML = `
-        <div class="row">
-            <div class="col-md-6">
-                <img src="${product.image}" class="img-fluid rounded" alt="${product.name}">
-            </div>
-            <div class="col-md-6">
-                <h5>${product.name}</h5>
-                <p class="text-muted">${product.description}</p>
-                <div class="mb-3">
-                    <div class="product-rating">
-                        ${generateStars(product.rating)}
-                        <small class="text-muted ms-1">(${product.reviews} 评价)</small>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <span class="h4 text-danger">¥${product.price.toLocaleString()}</span>
-                    <span class="text-muted text-decoration-line-through ms-2">¥${product.originalPrice.toLocaleString()}</span>
-                </div>
-                <div class="mb-3">
-                    <span class="badge bg-primary">${product.brand}</span>
-                    <span class="badge bg-secondary ms-1">${getCategoryName(product.category)}</span>
-                </div>
-                <div class="mb-3">
-                    <h6>商品特点：</h6>
-                    <ul class="list-unstyled">
-                        <li><i class="fas fa-check text-success me-2"></i>品质保证</li>
-                        <li><i class="fas fa-check text-success me-2"></i>快速发货</li>
-                        <li><i class="fas fa-check text-success me-2"></i>售后无忧</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // 设置模态框中的添加购物车按钮
-    window.currentModalProductId = product.id;
-    
-    modal.show();
-}
-
-// 从模态框添加到购物车
-function addToCartFromModal() {
-    if (window.currentModalProductId) {
-        addToCart(window.currentModalProductId);
-        bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
-    }
-}
-
-// 获取分类名称
-function getCategoryName(category) {
-    const categories = {
-        'electronics': '电子产品',
-        'fashion': '时尚服饰',
-        'home': '家居生活',
-        'sports': '运动户外'
-    };
-    return categories[category] || category;
-}
-
-// 心愿单功能
-function toggleWishlist(productId) {
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const index = wishlist.indexOf(productId);
-    
-    if (index > -1) {
-        wishlist.splice(index, 1);
-        showToast('已从心愿单移除', 'info');
-    } else {
-        wishlist.push(productId);
-        showToast('已添加到心愿单', 'success');
-    }
-    
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-    updateWishlistIcons();
-}
-
-// 更新心愿单图标状态
-function updateWishlistIcons() {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    
-    document.querySelectorAll('[onclick^="toggleWishlist"]').forEach(button => {
-        const productId = parseInt(button.getAttribute('onclick').match(/\d+/)[0]);
-        const icon = button.querySelector('i');
-        
-        if (wishlist.includes(productId)) {
-            icon.className = 'fas fa-heart text-danger';
-        } else {
-            icon.className = 'far fa-heart';
-        }
-    });
-}
-
-// 显示提示消息
-function showToast(message, type = 'info') {
-    // 创建Toast容器（如果不存在）
-    let toastContainer = document.getElementById('toastContainer');
-    if (!toastContainer) {
-        toastContainer = document.createElement('div');
-        toastContainer.id = 'toastContainer';
-        toastContainer.className = 'toast-container position-fixed top-0 end-0 p-3';
-        toastContainer.style.zIndex = '9999';
-        document.body.appendChild(toastContainer);
-    }
-    
-    // 创建Toast元素
-    const toastId = 'toast-' + Date.now();
-    const toast = document.createElement('div');
-    toast.id = toastId;
-    toast.className = `toast align-items-center text-white bg-${type === 'success' ? 'success' : type === 'error' ? 'danger' : 'info'} border-0`;
-    toast.setAttribute('role', 'alert');
-    
-    toast.innerHTML = `
-        <div class="d-flex">
-            <div class="toast-body">
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'} me-2"></i>
-                ${message}
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-        </div>
-    `;
-    
-    toastContainer.appendChild(toast);
-    
-    // 显示Toast
-    const bsToast = new bootstrap.Toast(toast, {
-        autohide: true,
-        delay: 3000
-    });
-    bsToast.show();
-    
-    // 移除过期的Toast
-    toast.addEventListener('hidden.bs.toast', () => {
-        toast.remove();
-    });
-}
 
 // 初始化事件监听器
 function initializeEventListeners() {
     // 搜索表单提交
     const searchForm = document.querySelector('form[onsubmit="searchProducts(event)"]');
     if (searchForm) {
+        searchForm.removeAttribute('onsubmit');
         searchForm.addEventListener('submit', searchProducts);
     }
     
-    // 回到顶部按钮
+    // 价格估算表单
+    const estimateForm = document.getElementById('estimateForm');
+    if (estimateForm) {
+        estimateForm.addEventListener('submit', handleEstimate);
+    }
+    
+    // 创建必要的按钮和功能
     createBackToTopButton();
+    createScrollIndicator();
     
     // 页面滚动事件
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', throttle(handleScroll, 16));
     
-    // 页面可见性变化（用于刷新购物车数量）
+    // 页面可见性变化
     document.addEventListener('visibilitychange', () => {
         if (!document.hidden) {
-            cart = JSON.parse(localStorage.getItem('cart')) || [];
-            updateCartCount();
+            orders = JSON.parse(localStorage.getItem('orders')) || [];
+            updateOrderCount();
         }
     });
+    
+    // 添加淡入动画
+    addScrollAnimations();
+}
+
+// 平滑滚动导航
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// 初始化价格估算表单
+function initEstimateForm() {
+    const form = document.getElementById('estimateForm');
+    if (!form) return;
+    
+    // 实时输入验证
+    const urlInput = document.getElementById('productUrl');
+    const quantityInput = document.getElementById('quantity');
+    const countrySelect = document.getElementById('country');
+    
+    if (urlInput) {
+        urlInput.addEventListener('input', debounce(validateProductUrl, 500));
+    }
+    
+    if (quantityInput) {
+        quantityInput.addEventListener('input', updateEstimatePreview);
+    }
+    
+    if (countrySelect) {
+        countrySelect.addEventListener('change', updateEstimatePreview);
+    }
+}
+
+// 初始化订单转发表单
+function initOrderForm() {
+    // 为订单转发按钮添加事件监听器
+    document.querySelectorAll('a[href="#order"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            showOrderModal();
+        });
+    });
+}
+
+// 搜索中国商品功能
+function searchProducts(event) {
+    event.preventDefault();
+    const searchTerm = document.getElementById('searchInput').value.trim();
+    
+    if (searchTerm) {
+        // 模拟搜索中国商品
+        showToast(`正在搜索"${searchTerm}"相关的中国商品...`, 'info');
+        
+        setTimeout(() => {
+            showToast('搜索功能正在开发中，敬请期待！', 'warning');
+        }, 1500);
+    }
+}
+
+// 处理价格估算
+function handleEstimate(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const productUrl = formData.get('productUrl') || document.getElementById('productUrl').value;
+    const quantity = parseInt(formData.get('quantity')) || parseInt(document.getElementById('quantity').value);
+    const country = formData.get('country') || document.getElementById('country').value;
+    
+    if (!productUrl || !quantity || !country) {
+        showToast('请填写完整的估价信息', 'error');
+        return;
+    }
+    
+    // 显示加载状态
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="loading"></span> 计算中...';
+    submitBtn.disabled = true;
+    
+    // 模拟API调用
+    setTimeout(() => {
+        const estimate = calculateEstimate(productUrl, quantity, country);
+        displayEstimateResult(estimate);
+        
+        // 恢复按钮状态
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        showToast('估价计算完成！', 'success');
+    }, 2000);
+}
+
+// 计算估价
+function calculateEstimate(url, quantity, country) {
+    // 缓存键
+    const cacheKey = `${url}-${quantity}-${country}`;
+    
+    if (estimateCache.has(cacheKey)) {
+        return estimateCache.get(cacheKey);
+    }
+    
+    // 模拟价格计算逻辑
+    const basePrice = Math.floor(Math.random() * 5000) + 100; // 随机商品价格
+    const serviceFeeRate = getServiceFeeRate(url);
+    const shippingCost = getShippingCost(country, quantity);
+    
+    const productPrice = basePrice * quantity;
+    const serviceFee = Math.ceil(productPrice * serviceFeeRate);
+    const totalShipping = shippingCost;
+    const totalPrice = productPrice + serviceFee + totalShipping;
+    
+    const estimate = {
+        productPrice,
+        serviceFee,
+        shippingCost: totalShipping,
+        totalPrice,
+        currency: '¥',
+        platform: detectPlatform(url)
+    };
+    
+    // 缓存结果
+    estimateCache.set(cacheKey, estimate);
+    
+    return estimate;
+}
+
+// 获取代购费率
+function getServiceFeeRate(url) {
+    const domain = extractDomain(url);
+    const feeRates = {
+        'taobao.com': 0.05,
+        'tmall.com': 0.05,
+        'jd.com': 0.06,
+        'pinduoduo.com': 0.08,
+        'xiaohongshu.com': 0.10,
+        'default': 0.07
+    };
+    
+    return feeRates[domain] || feeRates['default'];
+}
+
+// 获取国际运费
+function getShippingCost(country, quantity) {
+    const shippingRates = {
+        'US': { base: 299, perItem: 50 },
+        'CA': { base: 259, perItem: 45 },
+        'AU': { base: 279, perItem: 48 },
+        'UK': { base: 289, perItem: 52 },
+        'DE': { base: 269, perItem: 46 },
+        'JP': { base: 189, perItem: 35 },
+        'KR': { base: 159, perItem: 30 },
+        'SG': { base: 199, perItem: 38 },
+        'default': { base: 299, perItem: 50 }
+    };
+    
+    const rate = shippingRates[country] || shippingRates['default'];
+    return rate.base + (rate.perItem * Math.max(0, quantity - 1));
+}
+
+// 检测电商平台
+function detectPlatform(url) {
+    const domain = extractDomain(url);
+    const platforms = {
+        'taobao.com': '淘宝',
+        'tmall.com': '天猫',
+        'jd.com': '京东',
+        'pinduoduo.com': '拼多多',
+        'xiaohongshu.com': '小红书'
+    };
+    
+    return platforms[domain] || '其他平台';
+}
+
+// 提取域名
+function extractDomain(url) {
+    try {
+        const urlObj = new URL(url.startsWith('http') ? url : 'https://' + url);
+        return urlObj.hostname.replace('www.', '');
+    } catch {
+        return 'unknown';
+    }
+}
+
+// 显示估价结果
+function displayEstimateResult(estimate) {
+    const resultDiv = document.getElementById('estimateResult');
+    if (!resultDiv) return;
+    
+    document.getElementById('productPrice').textContent = 
+        `${estimate.currency}${estimate.productPrice.toLocaleString()}`;
+    document.getElementById('serviceFee').textContent = 
+        `${estimate.currency}${estimate.serviceFee.toLocaleString()}`;
+    document.getElementById('shippingFee').textContent = 
+        `${estimate.currency}${estimate.shippingCost.toLocaleString()}`;
+    document.getElementById('totalPrice').textContent = 
+        `${estimate.currency}${estimate.totalPrice.toLocaleString()}`;
+    
+    resultDiv.style.display = 'block';
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // 添加动画效果
+    resultDiv.classList.add('fade-in');
+}
+
+// 显示订单转发模态框
+function showOrderModal() {
+    const modal = new bootstrap.Modal(document.getElementById('orderModal'));
+    modal.show();
+}
+
+// 提交订单转发申请
+function submitOrderTransfer() {
+    const orderNumber = document.getElementById('orderNumber').value.trim();
+    const platform = document.getElementById('platform').value;
+    const shippingAddress = document.getElementById('shippingAddress').value.trim();
+    
+    if (!orderNumber || !platform || !shippingAddress) {
+        showToast('请填写完整的订单信息', 'error');
+        return;
+    }
+    
+    // 创建订单转发记录
+    const transferOrder = {
+        id: Date.now(),
+        orderNumber,
+        platform,
+        shippingAddress,
+        status: 'pending',
+        createdAt: new Date().toISOString(),
+        type: 'transfer'
+    };
+    
+    orders.push(transferOrder);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    updateOrderCount();
+    
+    // 隐藏模态框
+    bootstrap.Modal.getInstance(document.getElementById('orderModal')).hide();
+    
+    // 清空表单
+    document.getElementById('orderForm').reset();
+    
+    showToast('订单转发申请已提交，我们将尽快处理！', 'success');
+}
+
+// 更新订单数量
+function updateOrderCount() {
+    const orderCountElement = document.getElementById('orderCount');
+    if (orderCountElement) {
+        const totalOrders = orders.length;
+        orderCountElement.textContent = totalOrders;
+        
+        if (totalOrders > 0) {
+            orderCountElement.classList.add('animate__animated', 'animate__pulse');
+            setTimeout(() => {
+                orderCountElement.classList.remove('animate__animated', 'animate__pulse');
+            }, 1000);
+        }
+    }
+}
+
+// 验证商品URL
+function validateProductUrl(event) {
+    const url = event.target.value;
+    const isValid = isValidProductUrl(url);
+    
+    if (url && !isValid) {
+        event.target.classList.add('is-invalid');
+        showToast('请输入有效的商品链接（支持淘宝、天猫、京东等）', 'error');
+    } else {
+        event.target.classList.remove('is-invalid');
+    }
+}
+
+// 检查URL是否有效
+function isValidProductUrl(url) {
+    const supportedDomains = [
+        'taobao.com', 'tmall.com', 'jd.com', 
+        'pinduoduo.com', 'xiaohongshu.com'
+    ];
+    
+    try {
+        const urlObj = new URL(url.startsWith('http') ? url : 'https://' + url);
+        const domain = urlObj.hostname.replace('www.', '');
+        return supportedDomains.some(supported => domain.includes(supported));
+    } catch {
+        return false;
+    }
+}
+
+// 更新估价预览
+function updateEstimatePreview() {
+    // 这里可以添加实时预览功能
+    // 暂时保留空实现
+}
+
+// 创建滚动进度指示器
+function createScrollIndicator() {
+    const indicator = document.createElement('div');
+    indicator.className = 'scroll-indicator';
+    document.body.appendChild(indicator);
+    window.scrollIndicator = indicator;
 }
 
 // 创建回到顶部按钮
 function createBackToTopButton() {
     const backToTopBtn = document.createElement('button');
     backToTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-    backToTopBtn.className = 'btn btn-primary position-fixed bottom-0 end-0 m-3 rounded-circle';
-    backToTopBtn.style.display = 'none';
-    backToTopBtn.style.zIndex = '9998';
-    backToTopBtn.style.width = '50px';
-    backToTopBtn.style.height = '50px';
+    backToTopBtn.className = 'btn btn-primary position-fixed rounded-circle';
+    backToTopBtn.style.cssText = `
+        display: none;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9998;
+        width: 50px;
+        height: 50px;
+        border: none;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    `;
     backToTopBtn.title = '回到顶部';
     
     backToTopBtn.addEventListener('click', () => {
@@ -467,15 +478,99 @@ function createBackToTopButton() {
 // 处理页面滚动
 function handleScroll() {
     const backToTopBtn = window.backToTopBtn;
+    const scrollIndicator = window.scrollIndicator;
+    
+    // 回到顶部按钮显示/隐藏
     if (backToTopBtn) {
         if (window.pageYOffset > 300) {
-            backToTopBtn.style.display = 'block';
-            backToTopBtn.classList.add('fade-in');
+            backToTopBtn.style.display = 'flex';
+            backToTopBtn.style.alignItems = 'center';
+            backToTopBtn.style.justifyContent = 'center';
         } else {
             backToTopBtn.style.display = 'none';
-            backToTopBtn.classList.remove('fade-in');
         }
     }
+    
+    // 滚动进度指示器
+    if (scrollIndicator) {
+        const scrollTop = window.pageYOffset;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / documentHeight) * 100;
+        scrollIndicator.style.transform = `scaleX(${scrollPercent / 100})`;
+    }
+}
+
+// 添加滚动动画
+function addScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, observerOptions);
+    
+    // 观察需要动画的元素
+    document.querySelectorAll('.service-card, .category-card, .feature-icon').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// 显示提示消息
+function showToast(message, type = 'info') {
+    let toastContainer = document.getElementById('toastContainer');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toastContainer';
+        toastContainer.className = 'toast-container position-fixed top-0 end-0 p-3';
+        toastContainer.style.zIndex = '9999';
+        document.body.appendChild(toastContainer);
+    }
+    
+    const toastId = 'toast-' + Date.now();
+    const toast = document.createElement('div');
+    toast.id = toastId;
+    toast.className = `toast align-items-center text-white bg-${
+        type === 'success' ? 'success' : 
+        type === 'error' ? 'danger' : 
+        type === 'warning' ? 'warning' : 
+        'info'
+    } border-0`;
+    toast.setAttribute('role', 'alert');
+    
+    const iconMap = {
+        success: 'check-circle',
+        error: 'exclamation-circle',
+        warning: 'exclamation-triangle',
+        info: 'info-circle'
+    };
+    
+    toast.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-${iconMap[type]} me-2"></i>
+                ${message}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    `;
+    
+    toastContainer.appendChild(toast);
+    
+    const bsToast = new bootstrap.Toast(toast, {
+        autohide: true,
+        delay: type === 'error' ? 5000 : 3000
+    });
+    bsToast.show();
+    
+    toast.addEventListener('hidden.bs.toast', () => {
+        toast.remove();
+    });
 }
 
 // 工具函数：防抖
@@ -507,8 +602,7 @@ function throttle(func, limit) {
 
 // 导出全局函数
 window.searchProducts = searchProducts;
-window.addToCart = addToCart;
-window.viewProduct = viewProduct;
-window.addToCartFromModal = addToCartFromModal;
-window.toggleWishlist = toggleWishlist;
+window.handleEstimate = handleEstimate;
+window.submitOrderTransfer = submitOrderTransfer;
+window.showOrderModal = showOrderModal;
 window.featuredProducts = featuredProducts;
