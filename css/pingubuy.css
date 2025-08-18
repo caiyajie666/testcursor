@@ -1,0 +1,320 @@
+/* PinguBuy 样式 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* 导航栏样式 */
+.navbar {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.logo-container {
+    font-size: 1.5rem;
+}
+
+.search-input {
+    border: 2px solid #e9ecef;
+    border-radius: 25px 0 0 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.search-input:focus {
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.btn-primary {
+    border-radius: 0 25px 25px 0;
+    padding: 10px 20px;
+}
+
+/* 搜索信息区域 */
+.search-info {
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* 商品卡片样式 */
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+/* 促销标签 */
+.promotion-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+}
+
+.badge-taobao {
+    background: linear-gradient(45deg, #ff6b35, #ff8e3c);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+}
+
+.badge-deal {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 4px;
+    box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+}
+
+.badge-bulk {
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 4px;
+    box-shadow: 0 2px 4px rgba(243, 156, 18, 0.3);
+}
+
+.badge-speed {
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 4px;
+    box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
+}
+
+/* 商品信息 */
+.product-info {
+    padding: 15px;
+}
+
+.product-title {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.8em;
+}
+
+.product-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.price-usd {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+.price-cny {
+    font-size: 12px;
+    color: #666;
+    text-decoration: line-through;
+}
+
+.price-original {
+    font-size: 12px;
+    color: #999;
+    margin-left: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .navbar-nav {
+        margin-top: 10px;
+    }
+    
+    .d-flex.me-3 {
+        margin: 10px 0;
+        max-width: 100%;
+    }
+    
+    .d-flex.align-items-center {
+        margin-top: 10px;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .search-input {
+        font-size: 13px;
+        padding: 8px 15px;
+    }
+    
+    .btn-primary {
+        padding: 8px 15px;
+    }
+    
+    .product-title {
+        font-size: 13px;
+    }
+    
+    .price-usd {
+        font-size: 14px;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .search-info .d-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .search-info .text-end {
+        text-align: center !important;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .product-info {
+        padding: 12px;
+    }
+    
+    .promotion-badge {
+        top: 6px;
+        left: 6px;
+    }
+    
+    .badge-taobao,
+    .badge-deal,
+    .badge-bulk,
+    .badge-speed {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}
+
+/* 加载动画 */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.spinner-border {
+    color: #0d6efd;
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.2s; }
+.product-card:nth-child(3) { animation-delay: 0.3s; }
+.product-card:nth-child(4) { animation-delay: 0.4s; }
+.product-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* 工具提示 */
+.tooltip-inner {
+    background-color: #333;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+}
