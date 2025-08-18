@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>购买商品 - PinguMall</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+	<!-- 顶部导航栏 -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container">
+			<a class="navbar-brand fw-bold" href="index.html">
+				<i class="fas fa-shopping-bag me-2"></i>PinguMall
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<div class="navbar-nav me-auto">
+					<a class="nav-link" href="index.html">首页</a>
+					<a class="nav-link" href="products.html">商品</a>
+					<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">分类</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="products.html?category=electronics">电子产品</a></li>
+							<li><a class="dropdown-item" href="products.html?category=fashion">时尚服饰</a></li>
+							<li><a class="dropdown-item" href="products.html?category=home">家居生活</a></li>
+							<li><a class="dropdown-item" href="products.html?category=sports">运动户外</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="navbar-nav">
+					<a class="nav-link" href="cart.html">
+						<i class="fas fa-shopping-cart"></i>
+						购物车 <span class="badge bg-danger" id="cartCount">0</span>
+					</a>
+					<a class="nav-link" href="login.html">登录</a>
+					<a class="nav-link" href="register.html">注册</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!-- 面包屑导航 -->
+	<nav aria-label="breadcrumb" class="bg-light py-2">
+		<div class="container">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="index.html">首页</a></li>
+				<li class="breadcrumb-item"><a href="products.html">商品</a></li>
+				<li class="breadcrumb-item active" aria-current="page" id="breadcrumbName">商品详情</li>
+			</ol>
+		</div>
+	</nav>
+
+	<div class="container my-4">
+		<div class="row g-4">
+			<!-- 左侧：图片 -->
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-body">
+						<img id="mainImage" class="img-fluid w-100 rounded" alt="商品图片">
+						<div class="d-flex gap-2 mt-3" id="thumbList"></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 右侧：购买信息 -->
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-body">
+						<h4 id="productName" class="mb-3">商品名称</h4>
+						<div class="mb-3">
+							<span class="h3 text-danger me-2" id="usdPrice">$0.00</span>
+							<span class="h4 text-muted">≈</span>
+							<span class="h3 ms-2" id="cnyPrice">¥0</span>
+							<a href="#" id="changeRate" class="ms-2 small">更改汇率</a>
+						</div>
+
+						<div class="border rounded p-3 mb-3 bg-light">
+							<div class="row g-3 align-items-center">
+								<div class="col-md-6">
+									<div>国内运费：<span class="badge bg-secondary">CNY</span>
+										<input id="domesticShip" type="number" class="form-control d-inline-block ms-2" style="width:90px" value="0" min="0">
+									</div>
+								</div>
+								<div class="col-md-6 text-md-end">
+									<span>寄送至：杭州仓库</span>
+								</div>
+								<div class="col-12 small text-muted">
+									国际运费不包含，<a href="#details" class="link-primary">运费估算</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label">颜色分类：</label>
+							<div id="colorOptions" class="d-flex flex-wrap gap-2"></div>
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label">尺码：</label>
+							<div id="sizeOptions" class="d-flex flex-wrap gap-2"></div>
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label">数量：</label>
+							<div class="d-inline-flex align-items-center">
+								<button class="btn quantity-btn" id="minusBtn"><i class="fas fa-minus"></i></button>
+								<input id="quantityInput" type="number" class="form-control quantity-input mx-2" value="1" min="1" max="99">
+								<button class="btn quantity-btn" id="plusBtn"><i class="fas fa-plus"></i></button>
+							</div>
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label">备注：</label>
+							<textarea id="remark" class="form-control" rows="3" placeholder="颜色、尺码、与卖家沟通信息等..."></textarea>
+						</div>
+
+						<div class="form-check mb-3">
+							<input class="form-check-input" type="checkbox" id="agreeCheck">
+							<label class="form-check-label" for="agreeCheck">我已阅读免责声明与服务条款，并同意承担商品质量的风险</label>
+						</div>
+
+						<div class="d-flex gap-3">
+							<button id="addCartBtn" class="btn btn-primary" disabled>
+								<i class="fas fa-cart-plus me-1"></i> 加入购物车
+							</button>
+							<button id="buyNowBtn" class="btn btn-warning" disabled>
+								<i class="fas fa-bolt me-1"></i> 立即购买
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 详情/评价/售后 -->
+	<div class="container mb-5">
+		<ul class="nav nav-tabs" id="detailTabs" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link active" id="tab-detail" data-bs-toggle="tab" data-bs-target="#panel-detail" type="button" role="tab">商品详情</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="tab-reviews" data-bs-toggle="tab" data-bs-target="#panel-reviews" type="button" role="tab">商品评价</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="tab-service" data-bs-toggle="tab" data-bs-target="#panel-service" type="button" role="tab">售后服务</button>
+			</li>
+		</ul>
+		<div class="tab-content border border-top-0 p-3 bg-white">
+			<div class="tab-pane fade show active" id="panel-detail" role="tabpanel">
+				<p id="detailDesc" class="mb-3"></p>
+				<img id="detailImage" class="img-fluid rounded" alt="详情图">
+			</div>
+			<div class="tab-pane fade" id="panel-reviews" role="tabpanel">
+				<div class="text-muted">暂无评价，欢迎购买后分享你的体验。</div>
+			</div>
+			<div class="tab-pane fade" id="panel-service" role="tabpanel">
+				<ul class="mb-0">
+					<li>支持7天无理由（不影响二次销售）</li>
+					<li>平台仅提供代购服务，请在下单前确认商品真实性与质量</li>
+					<li>国际运费与关税不包含在商品价格中</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<footer class="text-white py-4">
+		<div class="container text-center small">
+			&copy; 2025 PinguMall. All rights reserved.
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="js/product-detail.js"></script>
+</body>
+</html>
