@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品详情 - BOYLONDON机械翅膀黑色针织短裙</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product-detail.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-shopping-bag me-2"></i>PinguMall
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link" href="index.html">首页</a>
+                    <a class="nav-link" href="products.html">商品</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            分类
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="products.html?category=electronics">电子产品</a></li>
+                            <li><a class="dropdown-item" href="products.html?category=fashion">时尚服饰</a></li>
+                            <li><a class="dropdown-item" href="products.html?category=home">家居生活</a></li>
+                            <li><a class="dropdown-item" href="products.html?category=sports">运动户外</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 搜索框 -->
+                <form class="d-flex me-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="搜索商品...">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <!-- 用户菜单 -->
+                <div class="navbar-nav">
+                    <a class="nav-link" href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        购物车 <span class="badge bg-danger" id="cartCount">2</span>
+                    </a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i> 用户
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="login.html">登录</a></li>
+                            <li><a class="dropdown-item" href="register.html">注册</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 商品详情主体 -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- 左侧商品图片 -->
+            <div class="col-lg-6">
+                <div class="product-image-section">
+                    <!-- 主图 -->
+                    <div class="main-image-container">
+                        <div class="product-badge">
+                            <span class="badge bg-success">包邮</span>
+                            <span class="badge bg-warning text-dark">超级88 爆款直降</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop" 
+                             alt="BOYLONDON机械翅膀黑色针织短裙" class="main-product-image" id="mainImage">
+                        <div class="image-zoom-indicator">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 缩略图 -->
+                    <div class="thumbnail-container mt-3">
+                        <div class="row g-2">
+                            <div class="col-3">
+                                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=150&h=200&fit=crop" 
+                                     class="thumbnail-image active" onclick="changeMainImage(this.src.replace('150', '600').replace('200', '800'))">
+                            </div>
+                            <div class="col-3">
+                                <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=150&h=200&fit=crop" 
+                                     class="thumbnail-image" onclick="changeMainImage(this.src.replace('150', '600').replace('200', '800'))">
+                            </div>
+                            <div class="col-3">
+                                <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=150&h=200&fit=crop" 
+                                     class="thumbnail-image" onclick="changeMainImage(this.src.replace('150', '600').replace('200', '800'))">
+                            </div>
+                            <div class="col-3">
+                                <img src="https://images.unsplash.com/photo-1583743814966-8936f37f4fc9?w=150&h=200&fit=crop" 
+                                     class="thumbnail-image" onclick="changeMainImage(this.src.replace('150', '600').replace('200', '800'))">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 销售信息 -->
+                    <div class="sales-info mt-4">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <div class="info-item">
+                                    <div class="info-label">销量</div>
+                                    <div class="info-value">0</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="info-item">
+                                    <div class="info-label">平均发货</div>
+                                    <div class="info-value">0天</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="info-item">
+                                    <div class="info-label">重量(g)</div>
+                                    <div class="info-value">0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <small class="text-muted">无包装重量(g): 0</small>
+                        </div>
+                    </div>
+                    
+                    <!-- 操作按钮 -->
+                    <div class="action-buttons mt-4">
+                        <div class="row g-2">
+                            <div class="col-3">
+                                <button class="btn btn-outline-secondary w-100" id="likeBtn">
+                                    <i class="far fa-heart"></i> 喜欢
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-outline-secondary w-100">
+                                    <i class="fas fa-share"></i> 分享
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-outline-secondary w-100">
+                                    <i class="fas fa-copy"></i> 相似
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-danger w-100">
+                                    <i class="fas fa-flag"></i> 举报
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右侧商品信息 -->
+            <div class="col-lg-6">
+                <div class="product-info-section">
+                    <!-- 店铺信息 -->
+                    <div class="store-info mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="store-logo me-3">
+                                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=50&h=50&fit=crop&crop=face" 
+                                     alt="BOY" class="rounded-circle">
+                            </div>
+                            <div>
+                                <h6 class="mb-0">BOYLONDON flagship store</h6>
+                                <div class="store-rating">
+                                    <span class="badge bg-warning text-dark">⭐ 包邮</span>
+                                    <button class="btn btn-dark btn-sm ms-2">Enter Shop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 商品标题 -->
+                    <h1 class="product-title mb-3">
+                        [Cyber Butterfly Shadow] Boylondon Spring/Summer Women Dress Mechanical Wings Black Knitting Skirt W17004
+                        <button class="btn btn-link btn-sm p-0 ms-2" title="复制链接">
+                            <i class="fas fa-copy text-primary"></i> Copy Link
+                        </button>
+                    </h1>
+                    
+                    <!-- 价格信息 -->
+                    <div class="price-section mb-4">
+                        <div class="d-flex align-items-center">
+                            <span class="current-price me-3">$98.45</span>
+                            <span class="original-price me-3">≈ ¥699.00</span>
+                            <button class="btn btn-link btn-sm p-0 text-primary">Change</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 配送信息 -->
+                    <div class="shipping-info mb-4">
+                        <div class="row">
+                            <div class="col-12 mb-2">
+                                <div class="d-flex align-items-center">
+                                    <span class="badge bg-primary me-2">1</span>
+                                    <span>Domestic Shipping: <strong>0</strong> CNY; Shipped to: Hangzhou Warehouse</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <span class="badge bg-primary me-2">2</span>
+                                    <span>International Shipping not included 
+                                        <a href="#" class="text-primary">Shipping Fee Estimation</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 颜色选择 -->
+                    <div class="color-section mb-4">
+                        <h6>Color classification:</h6>
+                        <div class="color-options">
+                            <button class="btn btn-outline-dark active" data-color="black">Black</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 尺码选择 -->
+                    <div class="size-section mb-4">
+                        <h6>Size:</h6>
+                        <div class="size-options">
+                            <button class="btn btn-outline-secondary size-btn" data-size="xs">XS</button>
+                            <button class="btn btn-outline-secondary size-btn" data-size="s">S</button>
+                            <button class="btn btn-outline-secondary size-btn" data-size="m">M</button>
+                            <button class="btn btn-outline-secondary size-btn" data-size="l">L</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 数量选择 -->
+                    <div class="quantity-section mb-4">
+                        <h6>Quantity:</h6>
+                        <div class="quantity-controls">
+                            <button class="btn btn-outline-secondary" onclick="decreaseQuantity()">-</button>
+                            <input type="number" class="form-control quantity-input" value="1" min="1" id="quantityInput">
+                            <button class="btn btn-outline-secondary" onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 备注 -->
+                    <div class="remarks-section mb-4">
+                        <h6>Remarks:</h6>
+                        <textarea class="form-control" rows="3" 
+                                  placeholder="Add your note about the product here, such as size color seller contact information..."></textarea>
+                    </div>
+                    
+                    <!-- 免责声明 -->
+                    <div class="disclaimer-section mb-4">
+                        <h6>Disclaimer:</h6>
+                        <div class="disclaimer-text">
+                            <p class="text-muted small">
+                                All commodity information and merchants are originally sources of third-party e-commerce platforms. 
+                                PINGUBUY only provides information search and transaction services. You should verify the authenticity 
+                                of the information before the entrustment of the purchase, and accept the risks of the quality of the 
+                                product that may exist.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 协议确认 -->
+                    <div class="agreement-section mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="agreementCheck">
+                            <label class="form-check-label" for="agreementCheck">
+                                I have read the above disclaimer and your terms of service, and I agree to both.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- 购买按钮 -->
+                    <div class="purchase-buttons">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <button class="btn btn-primary btn-lg w-100" id="addToCartBtn" disabled>
+                                    Add To Cart
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-outline-primary btn-lg w-100" id="buyNowBtn" disabled>
+                                    Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 商品详情标签页 -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="details-tab" data-bs-toggle="tab" 
+                                data-bs-target="#details" type="button" role="tab">Item Details</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" 
+                                data-bs-target="#reviews" type="button" role="tab">Product Reviews</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="service-tab" data-bs-toggle="tab" 
+                                data-bs-target="#service" type="button" role="tab">After Sales Service</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="productTabContent">
+                    <div class="tab-pane fade show active" id="details" role="tabpanel">
+                        <div class="p-4">
+                            <div class="brand-showcase">
+                                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop" 
+                                     alt="BOYLONDON" class="img-fluid rounded">
+                            </div>
+                            <div class="product-details mt-4">
+                                <h4>商品详情</h4>
+                                <p>BOYLONDON 春夏女装机械翅膀黑色针织短裙，采用优质面料制作，设计独特，展现现代都市女性的时尚魅力。</p>
+                                <ul class="list-unstyled">
+                                    <li><strong>品牌：</strong>BOYLONDON</li>
+                                    <li><strong>款式：</strong>W17004</li>
+                                    <li><strong>颜色：</strong>黑色</li>
+                                    <li><strong>材质：</strong>优质针织面料</li>
+                                    <li><strong>适用季节：</strong>春夏</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        <div class="p-4">
+                            <h4>商品评价</h4>
+                            <div class="text-center py-5">
+                                <i class="fas fa-star-half-alt fa-3x text-muted mb-3"></i>
+                                <p class="text-muted">暂无评价，成为第一个评价的用户吧！</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="service" role="tabpanel">
+                        <div class="p-4">
+                            <h4>售后服务</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="service-item text-center p-3">
+                                        <i class="fas fa-shipping-fast fa-2x text-primary mb-2"></i>
+                                        <h6>快速发货</h6>
+                                        <p class="text-muted small">订单确认后48小时内发货</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="service-item text-center p-3">
+                                        <i class="fas fa-undo fa-2x text-success mb-2"></i>
+                                        <h6>7天无理由退换</h6>
+                                        <p class="text-muted small">商品完好可7天内无理由退换</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="service-item text-center p-3">
+                                        <i class="fas fa-headset fa-2x text-info mb-2"></i>
+                                        <h6>在线客服</h6>
+                                        <p class="text-muted small">24小时在线客服支持</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="bg-dark text-light mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>PinguMall</h5>
+                    <p class="text-muted">您的购物专家</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="text-muted">&copy; 2024 PinguMall. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 自定义JS -->
+    <script src="js/product-detail.js"></script>
+</body>
+</html>
