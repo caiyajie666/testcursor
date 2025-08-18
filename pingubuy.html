@@ -100,8 +100,150 @@
 
     <!-- 商品列表 -->
     <div class="container">
-        <div class="row g-4" id="productGrid">
+        <div class="row g-3" id="productGrid">
             <!-- 商品卡片将通过JavaScript动态生成 -->
+        </div>
+    </div>
+
+    <!-- 轮播图区域 -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center mb-4">精选推荐</h3>
+                <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-slide">
+                                <div class="row g-3">
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="featured-product-card">
+                                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop" alt="Featured Product 1">
+                                            <div class="featured-overlay">
+                                                <h5>夏季新款T恤</h5>
+                                                <p class="price">$12.99</p>
+                                                <span class="badge bg-danger">热销</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="featured-product-card">
+                                            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=600&fit=crop" alt="Featured Product 2">
+                                            <div class="featured-overlay">
+                                                <h5>时尚印花衫</h5>
+                                                <p class="price">$8.99</p>
+                                                <span class="badge bg-success">新品</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="featured-product-card">
+                                            <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&h=600&fit=crop" alt="Featured Product 3">
+                                            <div class="featured-overlay">
+                                                <h5>商务休闲装</h5>
+                                                <p class="price">$15.99</p>
+                                                <span class="badge bg-warning">限时</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="featured-product-card">
+                                            <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600&h=600&fit=crop" alt="Featured Product 4">
+                                            <div class="featured-overlay">
+                                                <h5>运动休闲套装</h5>
+                                                <p class="price">$22.99</p>
+                                                <span class="badge bg-info">推荐</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-slide">
+                                <div class="row g-3">
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="featured-product-card">
+                                            <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&h=600&fit=crop" alt="Featured Product 5">
+                                            <div class="featured-overlay">
+                                                <h5>工装风外套</h5>
+                                                <p class="price">$18.99</p>
+                                                <span class="badge bg-primary">精选</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="featured-product-card">
+                                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop" alt="Featured Product 6">
+                                            <div class="featured-overlay">
+                                                <h5>基础款上衣</h5>
+                                                <p class="price">$9.99</p>
+                                                <span class="badge bg-secondary">经典</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="featured-product-card">
+                                            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=600&fit=crop" alt="Featured Product 7">
+                                            <div class="featured-overlay">
+                                                <h5>潮流街头风</h5>
+                                                <p class="price">$16.99</p>
+                                                <span class="badge bg-dark">潮牌</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="featured-product-card">
+                                            <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&h=600&fit=crop" alt="Featured Product 8">
+                                            <div class="featured-overlay">
+                                                <h5>舒适居家服</h5>
+                                                <p class="price">$13.99</p>
+                                                <span class="badge bg-light text-dark">舒适</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-slide">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="featured-banner">
+                                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop" alt="Summer Sale">
+                                            <div class="banner-content">
+                                                <h3>夏季大促销</h3>
+                                                <p>全场服装低至5折起</p>
+                                                <button class="btn btn-light btn-lg">立即抢购</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="featured-banner">
+                                            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=400&fit=crop" alt="New Collection">
+                                            <div class="banner-content">
+                                                <h3>新品首发</h3>
+                                                <p>2024秋季新款上线</p>
+                                                <button class="btn btn-primary btn-lg">查看详情</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 

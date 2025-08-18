@@ -104,7 +104,7 @@ function generateProductCard(product) {
         : '';
     
     return `
-        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
             <div class="product-card" data-product-id="${product.id}">
                 <div class="product-image">
                     <img src="${product.image}" alt="${product.title}" loading="lazy">
@@ -241,10 +241,46 @@ function updateSearchInfo(searchTerm, resultCount) {
     }
 }
 
+// 初始化轮播图
+function initializeCarousel() {
+    // 初始化Bootstrap轮播图
+    const carouselElement = document.getElementById('featuredCarousel');
+    if (carouselElement && typeof bootstrap !== 'undefined') {
+        new bootstrap.Carousel(carouselElement, {
+            interval: 5000,
+            wrap: true,
+            touch: true
+        });
+    }
+    
+    // 添加轮播图商品点击事件
+    const featuredCards = document.querySelectorAll('.featured-product-card');
+    featuredCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const title = this.querySelector('h5').textContent;
+            const price = this.querySelector('.price').textContent;
+            alert(`精选商品：${title}\n价格：${price}`);
+        });
+    });
+    
+    // 添加促销横幅点击事件
+    const bannerButtons = document.querySelectorAll('.banner-content button');
+    bannerButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const bannerTitle = this.parentElement.querySelector('h3').textContent;
+            alert(`${bannerTitle} - 功能开发中...`);
+        });
+    });
+}
+
 // 初始化页面
 function initializePage() {
     // 渲染商品列表
     renderProducts();
+    
+    // 初始化轮播图
+    initializeCarousel();
     
     // 绑定搜索表单事件
     const searchForm = document.querySelector('form');
